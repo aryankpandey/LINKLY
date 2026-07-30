@@ -6,6 +6,16 @@ A premium, production-quality URL Shortener web application built with vanilla H
 
 ---
 
+## 🌟 Overview
+
+**LINKLY** is a feature-rich, client-side URL shortener designed with a polished glassmorphism interface. It allows users to turn long, messy links into clean, shareable URLs instantly — complete with custom aliases, QR code generation, link expiration settings, and real-time history tracking stored directly in your browser.
+
+---
+
+## 🌐 Live Demo
+👉 **[View Deployed App on Netlify](https://linklyhub.netlify.app)**
+
+---
 ## Preview
 
 ```
