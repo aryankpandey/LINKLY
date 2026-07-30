@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linkly — Shorten URLs. Share Smarter.</title>
+  <meta name="description" content="Transform long URLs into beautiful, memorable links in seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- Animated background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-blob blob-1" aria-hidden="true"></div>
+  <div class="bg-blob blob-2" aria-hidden="true"></div>
+  <div class="bg-blob blob-3" aria-hidden="true"></div>
+  <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+
+  <!-- Custom cursor glow -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Top nav -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="Linkly home">
+        <span class="logo-icon">🔗</span>
+        <span class="logo-text">LINKLY</span>
+      </a>
+      <nav class="header-nav" role="navigation" aria-label="Main navigation">
+        <a href="#shortener" class="nav-link">Shorten</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <span class="theme-icon theme-dark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-icon theme-light" style="display:none">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ─── HERO ─────────────────────────────────── -->
+    <section class="hero" id="hero" aria-labelledby="heroHeading">
+      <div class="container hero-inner">
+        <div class="hero-badge animate-fade-up" style="--delay:.1s">
+          <span class="badge-dot"></span>
+          Now with custom aliases & QR codes
+        </div>
+        <h1 class="hero-heading animate-fade-up" id="heroHeading" style="--delay:.2s">
+          Shorten URLs.<br />
+          <span class="gradient-text">Share Smarter.</span>
+        </h1>
+        <p class="hero-sub animate-fade-up" style="--delay:.35s">
+          Transform long URLs into beautiful, memorable links in seconds.<br />
+          No account required. Always free.
+        </p>
+        <div class="hero-cta animate-fade-up" style="--delay:.5s">
+          <a href="#shortener" class="btn btn-primary ripple">Get Started</a>
+          <a href="#features" class="btn btn-ghost">See Features</a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="hero-stats animate-fade-up" style="--delay:.65s" aria-label="Platform statistics">
+          <div class="stat-item">
+            <span class="stat-num">10M+</span>
+            <span class="stat-label">Links shortened</span>
+          </div>
+          <div class="stat-sep" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">99.9%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+          <div class="stat-sep" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">50ms</span>
+            <span class="stat-label">Avg redirect</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SHORTENER ─────────────────────────────── -->
+    <section class="shortener-section" id="shortener" aria-labelledby="shortenerHeading">
+      <div class="container">
+        <div class="section-label animate-fade-up">URL Shortener</div>
+        <h2 class="section-heading animate-fade-up" id="shortenerHeading" style="--delay:.1s">
+          Create your link
+        </h2>
+
+        <div class="glass-card shortener-card animate-fade-up" style="--delay:.2s">
+          <!-- URL Input -->
+          <div class="field-group">
+            <label class="field-label" for="urlInput">Long URL</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </span>
+              <input
+                type="url"
+                id="urlInput"
+                class="field-input"
+                placeholder="https://example.com/my/very/long/url"
+                autocomplete="off"
+                spellcheck="false"
+                aria-describedby="urlError urlCounter"
+              />
+              <span class="char-counter" id="urlCounter" aria-live="polite"></span>
+            </div>
+            <div class="field-error" id="urlError" role="alert" aria-live="assertive"></div>
+          </div>
+
+          <!-- Row: alias + expiry -->
+          <div class="shortener-row">
+            <div class="field-group field-half">
+              <label class="field-label" for="aliasInput">
+                Custom Alias
+                <span class="field-optional">optional</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-prefix" aria-hidden="true">linkly.dev/</span>
+                <input
+                  type="text"
+                  id="aliasInput"
+                  class="field-input alias-input"
+                  placeholder="my-custom-link"
+                  maxlength="30"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-label="Custom alias (optional)"
+                />
+              </div>
+            </div>
+
+            <div class="field-group field-half">
+              <label class="field-label" for="expirySelect">Expiration</label>
+              <div class="input-wrapper select-wrapper">
+                <select id="expirySelect" class="field-input field-select" aria-label="Link expiration">
+                  <option value="never">Never</option>
+                  <option value="24h">24 Hours</option>
+                  <option value="7d">7 Days</option>
+                  <option value="30d">30 Days</option>
+                </select>
+                <span class="select-chevron" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <button class="btn btn-primary btn-full ripple" id="shortenBtn" aria-live="polite">
+            <span class="btn-text">Shorten URL</span>
+            <span class="btn-loader" aria-hidden="true">
+              <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </span>
+          </button>
+
+          <!-- Output card (hidden until generated) -->
+          <div class="output-card" id="outputCard" hidden aria-live="polite" aria-label="Shortened URL result">
+            <div class="output-divider" aria-hidden="true"></div>
+
+            <div class="output-top">
+              <div class="output-label">Your short link is ready</div>
+              <div class="output-url-row">
+                <a class="output-url" id="outputUrl" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open shortened URL"></a>
+                <div class="output-actions" role="group" aria-label="Link actions">
+                  <button class="action-btn ripple" id="copyBtn" title="Copy link" aria-label="Copy link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                  </button>
+                  <button class="action-btn ripple" id="openBtn" title="Open URL" aria-label="Open URL in new tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Open
+                  </button>
+                  <button class="action-btn ripple" id="qrBtn" title="QR Code" aria-label="Show QR code">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+                    QR
+                  </button>
+                  <button class="action-btn ripple" id="shareBtn" title="Share" aria-label="Share link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    Share
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats panel -->
+            <div class="stats-panel" role="region" aria-label="Link statistics">
+              <div class="stat-card">
+                <span class="stat-card-label">Clicks</span>
+                <span class="stat-card-value" id="statClicks">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-card-label">Created</span>
+                <span class="stat-card-value" id="statCreated">—</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-card-label">Expires</span>
+                <span class="stat-card-value" id="statExpires">Never</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-card-label">Status</span>
+                <span class="stat-card-value status-active" id="statStatus">Active</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURES ──────────────────────────────── -->
+    <section class="features-section" id="features" aria-labelledby="featuresHeading">
+      <div class="container">
+        <div class="section-label animate-fade-up">Why Linkly</div>
+        <h2 class="section-heading animate-fade-up" id="featuresHeading" style="--delay:.1s">
+          Built for speed & trust
+        </h2>
+        <p class="section-sub animate-fade-up" style="--delay:.2s">
+          Everything you need to share links with confidence.
+        </p>
+
+        <div class="features-grid">
+          <article class="feature-card animate-fade-up" style="--delay:.3s" tabindex="0">
+            <div class="feature-icon-wrap" aria-hidden="true">⚡</div>
+            <h3 class="feature-title">Lightning Fast</h3>
+            <p class="feature-desc">Links resolve in under 50ms globally. No lag, no friction — just instant redirects your audience will never notice.</p>
+          </article>
+          <article class="feature-card animate-fade-up" style="--delay:.4s" tabindex="0">
+            <div class="feature-icon-wrap" aria-hidden="true">🔒</div>
+            <h3 class="feature-title">Safe & Secure</h3>
+            <p class="feature-desc">Every link is scanned for malicious content. HTTPS enforced. Your audience is always protected.</p>
+          </article>
+          <article class="feature-card animate-fade-up" style="--delay:.5s" tabindex="0">
+            <div class="feature-icon-wrap" aria-hidden="true">📊</div>
+            <h3 class="feature-title">Analytics Ready</h3>
+            <p class="feature-desc">Track clicks, geography, and referrers. Understand how your links perform with real-time insights.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── RECENT LINKS ───────────────────────────── -->
+    <section class="recent-section" id="recent" aria-labelledby="recentHeading">
+      <div class="container">
+        <div class="recent-header">
+          <div>
+            <div class="section-label animate-fade-up">History</div>
+            <h2 class="section-heading animate-fade-up" id="recentHeading" style="--delay:.1s">Recent links</h2>
+          </div>
+          <button class="btn btn-ghost btn-sm animate-fade-up" id="clearHistoryBtn" style="--delay:.2s" aria-label="Clear all history">
+            Clear All
+          </button>
+        </div>
+
+        <div class="recent-list" id="recentList" role="list" aria-label="Recent shortened links">
+          <!-- populated by JS -->
+        </div>
+        <div class="recent-empty" id="recentEmpty" aria-live="polite">
+          <span class="empty-icon" aria-hidden="true">🔗</span>
+          <p>No links yet. Shorten your first URL above!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FAQ ───────────────────────────────────── -->
+    <section class="faq-section" id="faq" aria-labelledby="faqHeading">
+      <div class="container">
+        <div class="section-label animate-fade-up">FAQ</div>
+        <h2 class="section-heading animate-fade-up" id="faqHeading" style="--delay:.1s">Common questions</h2>
+
+        <div class="faq-list animate-fade-up" style="--delay:.2s" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq1">
+              How does URL shortening work?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" id="faq1" role="region">
+              <p>Linkly generates a unique short code and maps it to your original URL. When someone visits the short link, they're instantly redirected — all in milliseconds.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq2">
+              Are my links permanent?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" id="faq2" role="region">
+              <p>Links set to "Never" expire stay active indefinitely. You can also choose a 24-hour, 7-day, or 30-day window when creating a link.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq3">
+              Can I use custom aliases?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" id="faq3" role="region">
+              <p>Yes. Type any alias in the "Custom Alias" field and your link becomes <code>linkly.dev/your-alias</code>. Aliases must be unique and contain only letters, numbers, and hyphens.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq4">
+              Is Linkly free?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" id="faq4" role="region">
+              <p>Linkly is completely free — no account needed. Create links, use custom aliases, and download QR codes without limits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── FOOTER ─────────────────────────────────── -->
+  <div class="footer-divider" aria-hidden="true">
+    <div class="divider-line"></div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-card glass-card">
+        <p class="footer-by">Designed & Developed with <span aria-label="love">❤️</span> by</p>
+        <h2 class="footer-name">Aryan Kumar Pandey</h2>
+        <p class="footer-roles">Backend Engineer&nbsp;•&nbsp;Java Developer&nbsp;•&nbsp;Software Engineer</p>
+        <p class="footer-quote">"Building scalable software, one project at a time."</p>
+
+        <div class="footer-badge">
+          <span class="badge-dot green" aria-hidden="true"></span>
+          Available for Collaboration
+        </div>
+
+        <!-- Social links -->
+        <nav class="social-links" aria-label="Social media links">
+          <!-- GitHub -->
+          <a href="https://github.com/aryankpandey" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub" data-tooltip="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/in/aryankpandey/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn" data-tooltip="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com/aryanpandeyyy" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram" data-tooltip="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="https://twitter.com/your_username" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="X (Twitter)" data-tooltip="X / Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- Portfolio -->
+          <a href="https://aryan-kumar-pandey.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Portfolio" data-tooltip="Portfolio">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </a>
+        </nav>
+
+        <p class="footer-copy">© 2026 Aryan Kumar Pandey. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── MODALS ─────────────────────────────────── -->
+  <!-- QR Code Modal -->
+  <div class="modal-overlay" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle" hidden>
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3 id="qrModalTitle" class="modal-title">QR Code</h3>
+        <button class="modal-close ripple" id="qrClose" aria-label="Close QR modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="qr-body">
+        <div class="qr-img-wrap" id="qrImgWrap">
+          <div class="qr-skeleton" id="qrSkeleton" aria-label="Loading QR code"></div>
+          <img id="qrImage" alt="QR code for shortened URL" style="display:none" />
+        </div>
+        <p class="qr-url" id="qrUrl"></p>
+        <button class="btn btn-primary ripple" id="qrDownload" aria-label="Download QR code">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm clear modal -->
+  <div class="modal-overlay" id="clearModal" role="dialog" aria-modal="true" aria-labelledby="clearModalTitle" hidden>
+    <div class="modal-card glass-card modal-sm">
+      <div class="modal-header">
+        <h3 id="clearModalTitle" class="modal-title">Clear history?</h3>
+        <button class="modal-close ripple" id="clearModalClose" aria-label="Close confirmation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p class="modal-body-text">This will permanently delete all your recent links from local storage. This cannot be undone.</p>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="clearCancelBtn">Cancel</button>
+        <button class="btn btn-danger ripple" id="clearConfirmBtn">Delete All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- Back to top -->
+  <button class="back-to-top ripple" id="backToTop" aria-label="Back to top" title="Back to top" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Keyboard shortcut hint -->
+  <div class="kbd-hint" id="kbdHint" aria-hidden="true">
+    Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to shorten
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
