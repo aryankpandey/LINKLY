@@ -186,7 +186,7 @@ Backend Engineer · Java Developer · Software Engineer
 
 [![GitHub](https://img.shields.io/badge/GitHub-aryankpandey-181717?style=flat&logo=github)](https://github.com/aryankpandey)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-aryankpandey-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/aryankpandey/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-aryan--kumar--pandey.vercel.app-7C3AED?style=flat)](https://aryan-kumar-pandey.vercel.app/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-aryan--kumar--pandey.vercel.app-7C3AED?style=flat)](https://aryankpandey.lovable.app/)
 
 ---
 
